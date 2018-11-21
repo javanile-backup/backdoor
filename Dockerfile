@@ -10,8 +10,11 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN echo 'root:root' | chpasswd
+RUN useradd -ms /bin/bash backdoor
+RUN echo 'backdoor:backdoor' | chpasswd
 
 EXPOSE 10022
 
-CMD ['/usr/sbin/sshd', '-D']
+COPY foreground.sh /usr/local/bin/
+CMD ["foreground.sh"]
+

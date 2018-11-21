@@ -6,6 +6,8 @@ services:
     networks:
       backdocker:
         ipv4_address: 10.0.10.254
+    environment:
+      -
     ports:
       - '10022:10022'
 
