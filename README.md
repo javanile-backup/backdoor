@@ -1,8 +1,8 @@
 # backdoor
 
-docker run -d -p 10022:10022 javanile/backdoor
+docker run --rm -p 10022:10022 javanile/backdoor
 
-docker run --rm \
+docker run --rm -d \
     -e BACKDOOR_HOST=private.backdoor.net \
     -e BACKDOOR_PORT=10022 \
     -e BACKDOOR_BIND=50000 \ 

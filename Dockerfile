@@ -16,5 +16,5 @@ RUN echo 'backdoor:backdoor' | chpasswd
 EXPOSE 10022
 
 COPY foreground.sh /usr/local/bin/
-CMD ["foreground.sh"]
+ENTRYPOINT ["foreground.sh"]
 
