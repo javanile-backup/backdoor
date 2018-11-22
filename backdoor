@@ -3,15 +3,14 @@
 if [ -n "${1}" ]; then; echo "error: missing task."; exit 5; fi
 if [ -n "${2}" ]; then; echo "error: missing port."; exit 5; fi
 
-USER=${3:-root}
+r="^([^:]*)(:([0-9]+))?$" && [[ "$1" =~ $r ]] && h="${BASH_REMATCH[1]}" && p="${BASH_REMATCH[3]}"
+HOST=${h:-localhost}
+PORT=${p:-10022}
+USER=${4:-backdoor}
 
 case ${1} in
-    open) echo "one" ;;
-    bind)
-    *)
-        echo "others"
-        ;;
-    esac
-
-
-ssh localhost -p ${1} -l ${USER}
+    open) ssh -p ${PORT} backdoor@${HOST} "backdoor link ${2} ${USER}" ;;
+    bind) ssh -R ${2}:localhost:${PORT} -p ${PORT} ${USER}@${HOST} ;;
+    link) ssh -p ${2} -l ${USER} localhost ;;
+    *)    echo "backdoor documentation at https://github.com/javanile/backdoor" ;;
+esac
