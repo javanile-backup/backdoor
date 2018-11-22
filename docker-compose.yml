@@ -9,6 +9,26 @@ services:
     ports:
       - '10022:10022'
 
+  target:
+    build: ./
+    networks:
+      backdoor:
+        ipv4_address: 10.0.22.253
+    environment:
+      - BACKDOOR_BIND=50001
+    links:
+      - backdoor
+
+  client:
+    build: ./
+    networks:
+      backdoor:
+        ipv4_address: 10.0.22.252
+    environment:
+      - BACKDOOR_OPEN=50001
+    links:
+      - target
+
 networks:
   backdoor:
     driver: bridge

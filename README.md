@@ -1,6 +1,6 @@
 # backdoor
 
-docker run -d -P javanile/backdoor
+docker run -d -p 10022:10022 javanile/backdoor
 
 docker run --rm \
     -e BACKDOOR_HOST=private.backdoor.net \

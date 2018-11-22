@@ -1,4 +1,10 @@
 #!/bin/bash
 
+if [ -n "${1}" ]; then
+    echo "error: missing port to open."
+    exit 5
+fi
 
+USER=${2:-root}
 
+ssh localhost -p $1 -l ${USER}
