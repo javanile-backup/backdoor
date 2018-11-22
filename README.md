@@ -24,8 +24,6 @@ curl -sL https://javanile.github.io/backdoor/setup | sudo -E bash -
 
 
 backdoor bind 50000
+
 backdoor open 50000
-
-
-
 

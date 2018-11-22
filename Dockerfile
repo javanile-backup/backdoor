@@ -13,8 +13,12 @@ RUN apt-get update \
 RUN useradd -ms /bin/bash backdoor
 RUN echo 'backdoor:backdoor' | chpasswd
 
+COPY backdoor /usr/local/bin/
+RUN chmod +x /usr/local/bin/backdoor
+
+COPY foreground.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/foreground.sh
+
 EXPOSE 10022
 
-COPY backdoor /usr/local/bin/
-COPY foreground.sh /usr/local/bin/
 ENTRYPOINT ["foreground.sh"]
