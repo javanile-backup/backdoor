@@ -16,8 +16,10 @@ PORT=${p:-10022}
 USER=${4:-backdoor}
 SIDE=${4:-10022}
 
+ACCEPT=-oStrictHostKeyChecking=accept-new
+
 case ${1} in
-    bind) ssh -R ${2}:127.0.0.1:${SIDE} -p ${PORT} backdoor@${HOST} ;;
-    open) ssh -t -p ${PORT} backdoor@${HOST} "ssh -oStrictHostKeyChecking=no -p ${2} -l ${USER} 127.0.0.1" ;;
+    bind) ssh ${ACCEPT} -R ${2}:127.0.0.1:${SIDE} -p ${PORT} backdoor@${HOST} ;;
+    open) ssh ${ACCEPT} -t -p ${PORT} backdoor@${HOST} "ssh ${ACCEPT} -p ${2} -l ${USER} 127.0.0.1" ;;
     *) echo "backdoor documentation at https://github.com/javanile/backdoor" ;;
 esac
