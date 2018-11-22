@@ -5,7 +5,6 @@ set -e
 ## Variables
 PORT=${BACKDOOR_PORT:-10022}
 HOST=${BACKDOOR_HOST:-localhost}
-USER=${BACKDOOR_USER:-root}
 
 ## Run service as remote target
 if [ -n "${BACKDOOR_BIND}" ]; then
@@ -22,5 +21,5 @@ if [ -n "${BACKDOOR_OPEN}" ]; then
 fi
 
 ## Run service as daemon
-echo "[BACKDOOR:INFO] Server listen on port '${PORT}'"
+echo "[BACKDOOR:INFO] Server listen on port '${PORT}'."
 /usr/sbin/sshd -D
