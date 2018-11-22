@@ -16,9 +16,9 @@ PORT=${p:-10022}
 if [ -n "${BACKDOOR_BIND}" ]; then
     sleep 1
     echo "[BACKDOOR:INFO] Target bind port '${BACKDOOR_BIND}' on remote server '${HOST}:${PORT}'."
+    /usr/sbin/sshd
     sshpass -p backdoor ssh -oStrictHostKeyChecking=accept-new \
         -R ${BACKDOOR_BIND}:127.0.0.1:10022 -p ${PORT} backdoor@${HOST}
-    /usr/sbin/sshd -D
 fi
 
 ## Run service as active client
