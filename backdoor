@@ -10,8 +10,7 @@ USER=${4:-backdoor}
 SIDE=${4:-10022}
 
 case ${1} in
-    open) ssh -p ${PORT} backdoor@${HOST} "backdoor link ${2} ${USER}" ;;
     bind) ssh -R ${2}:127.0.0.1:${SIDE} -p ${PORT} backdoor@${HOST} ;;
-    link) ssh -p ${2} -l ${USER} 127.0.0.1 ;;
+    open) ssh -t -p ${PORT} backdoor@${HOST} "ssh -p ${2} -l ${USER} 127.0.0.1" ;;
     *) echo "backdoor documentation at https://github.com/javanile/backdoor" ;;
 esac
