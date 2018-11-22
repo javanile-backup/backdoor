@@ -8,15 +8,16 @@
 set -e
 
 ## Variables
-PORT=${BACKDOOR_PORT:-10022}
-HOST=${BACKDOOR_HOST:-localhost}
+r="^([^:]*)(:([0-9]+))?$" && [[ "${BACKDOOR_HOST}" =~ $r ]] && h="${BASH_REMATCH[1]}" && p="${BASH_REMATCH[3]}"
+HOST=${h:-localhost}
+PORT=${p:-10022}
 
 ## Run service as remote target
 if [ -n "${BACKDOOR_BIND}" ]; then
     sleep 1
     echo "[BACKDOOR:INFO] Target bind port '${BACKDOOR_BIND}' on remote server '${HOST}:${PORT}'."
-    backdoor bind ${BACKDOOR_BIND} ${HOST}:${PORT}
-    exit 2
+    sshpass -p backdoor ssh -oStrictHostKeyChecking=accept-new -R ${2}:127.0.0.1:10022 -p ${PORT} backdoor@${HOST}
+    /usr/sbin/sshd -D
 fi
 
 ## Run service as active client
@@ -24,7 +25,7 @@ if [ -n "${BACKDOOR_OPEN}" ]; then
     sleep 1
     echo "[BACKDOOR:INFO] Client open port '${BACKDOOR_OPEN}' on remote server '${HOST}:${PORT}'."
     backdoor open ${BACKDOOR_OPEN} ${HOST}:${PORT}
-    exit 3
+    /usr/sbin/sshd -D
 fi
 
 ## Run service as daemon

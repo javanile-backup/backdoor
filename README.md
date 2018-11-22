@@ -1,6 +1,47 @@
 # backdoor
 
+```yaml
+## public backdoor server
+varsion: '3'
+
+services:
+  backdoor:
+    image: javanile/backdoor
+    ports:    
+      - '10022:10022'
+```
+
+```yaml
+## private backdoor target
+varsion: '3'
+
+services:
+  backdoor:
+    image: javanile/backdoor
+    environment:
+      - BACKDOOR_HOST=<public-backdoor-server>
+      - BACKDOOR_BIND=50000
+```
+
+```yaml
+## private backdoor client (connected to the target)
+varsion: '3'
+
+services:
+  backdoor:
+    image: javanile/backdoor
+    environment:
+      - BACKDOOR_HOST=<public-backdoor-server>
+      - BACKDOOR_OPEN=50000
+```
+
+
 docker run --rm -p 10022:10022 javanile/backdoor
+
+
+
+
+
 
 docker run --rm -d \
     -e BACKDOOR_HOST=private.backdoor.net \
