@@ -1,5 +1,10 @@
 #!/bin/bash
 
+##
+# javanile/backdoor (v0.0.1)
+# Reverse SSH tunnel for Docker
+##
+
 set -e
 
 ## Variables

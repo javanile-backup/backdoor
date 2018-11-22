@@ -1,5 +1,12 @@
 #!/bin/bash
 
+##
+# javanile/backdoor (v0.0.1)
+# Reverse SSH tunnel for Docker
+##
+
+set -e
+
 [ -z "$1" ] && echo "error: missing task." && exit 5;
 [ -z "$2" ] && echo "error: missing port." && exit 5;
 

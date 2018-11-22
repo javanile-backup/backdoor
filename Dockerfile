@@ -1,3 +1,8 @@
+##
+# javanile/backdoor (v0.0.1)
+# Reverse SSH tunnel for Docker
+##
+
 FROM ubuntu:18.04
 
 RUN apt-get update \
@@ -16,9 +21,9 @@ RUN echo 'backdoor:backdoor' | chpasswd
 COPY backdoor /usr/local/bin/
 RUN chmod +x /usr/local/bin/backdoor
 
-COPY foreground.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/foreground.sh
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 10022
 
-ENTRYPOINT ["foreground.sh"]
+ENTRYPOINT ["entrypoint.sh"]

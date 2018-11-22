@@ -1,3 +1,8 @@
+##
+# javanile/backdoor (v0.0.1)
+# Reverse SSH tunnel for Docker
+##
+
 version: '3.3'
 
 services:
