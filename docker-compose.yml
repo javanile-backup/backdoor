@@ -15,9 +15,10 @@ services:
       backdoor:
         ipv4_address: 10.0.22.253
     environment:
+      - BACKDOOR_HOST=server
       - BACKDOOR_BIND=50001
     links:
-      - backdoor
+      - server
 
   client:
     build: ./
@@ -25,6 +26,7 @@ services:
       backdoor:
         ipv4_address: 10.0.22.252
     environment:
+      - BACKDOOR_HOST=server
       - BACKDOOR_OPEN=50001
     links:
       - target

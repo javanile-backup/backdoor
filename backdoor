@@ -1,10 +1,17 @@
 #!/bin/bash
 
-if [ -n "${1}" ]; then
-    echo "error: missing port to open."
-    exit 5
-fi
+if [ -n "${1}" ]; then; echo "error: missing task."; exit 5; fi
+if [ -n "${2}" ]; then; echo "error: missing port."; exit 5; fi
 
-USER=${2:-root}
+USER=${3:-root}
 
-ssh localhost -p $1 -l ${USER}
+case ${1} in
+    open) echo "one" ;;
+    bind)
+    *)
+        echo "others"
+        ;;
+    esac
+
+
+ssh localhost -p ${1} -l ${USER}

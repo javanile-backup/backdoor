@@ -18,3 +18,12 @@ docker run --rm -it \
 ssh -p 10022 backdoor@90.88.55.62 -R 19999:localhost:2
 
 ssh -p 10022 backdoor@localhost 19999
+
+
+sudo 
+
+
+curl -sL https://javanile.github.io/backdoor/setup | sudo -E bash -
+
+
+

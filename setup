@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+FILE=/usr/local/bin/backdoor
+
+curl -o ${FILE} https://javanile.github.io/backdoor/backdoor
+chmod +x ${FILE}
+
+echo "backdoor installed on '${FILE}'."
