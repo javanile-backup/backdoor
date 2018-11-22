@@ -1,22 +1,20 @@
 version: '3.3'
 
 services:
-  backdocker:
+  backdoor:
     build: ./
     networks:
-      backdocker:
-        ipv4_address: 10.0.10.254
-    environment:
-      -
+      backdoor:
+        ipv4_address: 10.0.22.254
     ports:
       - '10022:10022'
 
 networks:
-  backdocker:
+  backdoor:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: 'true'
     ipam:
       driver: default
       config:
-        - subnet: 10.0.10.0/24
+        - subnet: 10.0.22.0/24

@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 RUN apt-get update \
- && apt-get install -y openssh-server net-tools \
+ && apt-get install -y openssh-server net-tools iputils-ping \
  && mkdir /var/run/sshd \
  && mkdir /root/.ssh \
  && sed -ri 's/^#?Port 22/Port 10022/' /etc/ssh/sshd_config \
